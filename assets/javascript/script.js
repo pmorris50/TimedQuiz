@@ -1,6 +1,7 @@
 //setting elements to variables so we can style
 var headerEL = document.querySelectorAll("header");
 var timerDisplay = document.querySelector(".timerdisplay")
+var startButton= document.querySelector("button");
 
 
 
@@ -14,7 +15,7 @@ var D1 = document.createElement("li");
 
 
 //inputting timer function to timerDisplay
-timerDisplay.textContent = "Time Left: " + "return time" //this is where the return for timer function goes
+//timerDisplay.textContent = "Time Left: " + "return time" //this is where the return for timer function goes
 
 question = 'Favorite Food?';
 A1.textContent = "Apples 🍎 ";
@@ -29,7 +30,6 @@ D1.textContent = "Cupcakes 🧁 ";
 
 //set CSS styling
 
-highScoresEl.setAttrubute('style', 'text-decoration: none;')
 
 var questionOne ={
     question: '',
@@ -38,4 +38,22 @@ var questionOne ={
     answerC: '',
     answerD: ''
 
+}
+//eventlistener on click button
+startButton.addEventListener("click", function(){
+    countdown();
+});
+//timer that counts down from 60 
+function countdown(){
+    var timeLeft = 60;
+    var timeInterval = setInterval(function(){
+        if(timeLeft >1 ){
+            timerDisplay.textContent = "Time: " + timeLeft;
+            timeLeft --;
+        } 
+        else{
+            timerDisplay.textContent = "Time is up";
+            clearInterval(timeInterval);
+        }
+    }, 1000);
 }
