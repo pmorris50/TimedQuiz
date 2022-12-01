@@ -21,13 +21,35 @@
     <!-- div container for all content -->
     
         <!-- div container to hold question/answers hidden until start button clicked  -->
-        <div id="question-container" class="hide">
+        <div id="question-container">
+            <ul class = "question"></ul>
+                <ul> <button class= "choiceA"></button></ul>
+                <ul> <button class= "choiceB"></button></ul>
+                <ul> <button class= "choiceC"></button></ul>
+                <ul> <button class= "choiceD"></button></ul>
             <!-- question and answer selection will go here  -->
         </div>
         <!-- Center, enlarge and style. add event listener. -->
-        <div class= "beforeClick">
+        <div class= "StartQuiz">
+            <p>clicking on the "Start Quiz" button will start a timer and present you with quiz questions. 15 seconds will be subtracted from the timer for every wrong answer. Your score will be the remaining time.
+                Good luck!
+            </p>
             <button type="button" id="startbutton">Start Quiz</button>
-            
+
+        </div>
+        <div class = "form-container">
+            <form action = "/hs.html" class = "form"> 
+                <label for ="initials">Initials: </label>
+                <input type ="text" id="initials" name = "initials">
+
+                <label for ="score">Score: </label>
+                <input type ="number" id ="score" name ="score">
+                <input type ="submit" value ="Submit">
+
+
+            </form>
+
+
         </div>
 
 

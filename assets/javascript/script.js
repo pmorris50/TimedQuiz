@@ -1,95 +1,109 @@
 //setting elements to variables so we can style
+var body = document.body;
 var headerEL = document.querySelectorAll("header");
 var timerDisplay = document.querySelector(".timerdisplay")
-var startButton= document.querySelector("button");
-//var gameDescription =document.querySelector("#description");
-var hideText = document.querySelector('.beforeClick');
-var questionDisplay = document.querySelector("#question-container"); 
-//creating elements on index.html;
-var body = document.body;
-var description = document.createElement('p');
-var question = document.createElement('ul');
-var A = document.createElement("li");
-var B = document.createElement("li");  
-var C = document.createElement("li"); 
-var D = document.createElement("li");
+var startButton = document.querySelector("#startbutton");
+var quizQuestion = document.querySelector(".question");
+var submitScore = document.querySelector(".form-container");
+var hideTextAfterClick = document.querySelector('.StartQuiz');
+var questionDisplay = document.querySelector("#question-container");
+var choiceA = document.querySelector(".choiceA");
+var choiceB = document.querySelector(".choiceB");
+var choiceC = document.querySelector(".choiceC");
+var choiceD = document.querySelector(".choiceD");
+//need to test 10-13
+//global var
+var timeLeft = 60;
+var currentQuestion = 0;
+//need to test 19-23
+body.appendChild(choiceA);
+body.appendChild(choiceB);
+body.appendChild(choiceC);
+body.appendChild(choiceD);
+body.appendChild(submitScore);
+questionDisplay.appendChild(quizQuestion);
 
-//appendChilds to display
-hideText.appendChild(description);
-questionDisplay.appendChild(question);
-questionDisplay.appendChild(A);
-questionDisplay.appendChild(B);
-questionDisplay.appendChild(C);
-questionDisplay.appendChild(D)
-//added text content
-description.textContent = 'Time will start when you click the "Start Quiz" button! 15 seconds will be deducted for a wrong answer. Your score is your time left';
-question.textContent = "what is the question";
-A.textContent ="is this even real";
-B.textContent = "";
-C.textContent ="";
-D.textContent="";
-
-//styling for quesitondisplay
+//initial styling to hide questions
 questionDisplay.setAttribute("style", "display: none");
-
+submitScore.setAttribute("style", "display: none");
+choiceA.setAttribute("style", "display: none")
+choiceB.setAttribute("style", "display: none")
+choiceC.setAttribute("style", "display: none")
+choiceD.setAttribute("style", "display: none")
+//question array idk if I need this but I might
+questionList = [question0, question1, question2, question3];
 
 
 
 //question objects
-var question1 ={
+var question0 = {
     question: "JavaScript is an ______ language",
-    wrongAnswer1: "A. Functional",
-    rightAnswer: "B. Object-Oriented",
-    wrongAnswer2: "C. Procedural",
-    wrongAnswer3: "D. Scripted"
-}
+    wrongAnswer1: ["A. Functional", false],
+    rightAnswer: ["B. Object-Oriented", true],
+    wrongAnswer2: ["C. Procedural", false],
+    wrongAnswer3: ["D. Scripted", false]
+};
 
-var question2 ={
+var question1 = {
     question: "You can store data in JavaScript in?",
-    wrongAnswer1: "A. Objects",
-    wrongAnswer2: "B. Arrays",
-    wrongAnswer3: "C. Variables",
-    rightAnswer: "D. All of the above"
+    wrongAnswer1: ["A. Objects", false],
+    wrongAnswer2: ["B. Arrays", false],
+    wrongAnswer3: ["C. Variables", false],
+    rightAnswer: ["D. All of the above", true]
 
-}
-var question3 ={
+};
+var question2 = {
     question: "Which function is used to turn an object into a string?",
-    rightAnswer: "A. stringify()",
-    wrongAnswer1: "B. parse()",
-    wrongAnswer2: "C. convert()",
-    wrongAnswer3: "D. None of the above"
-}
-var question4 ={
+    rightAnswer: ["A. stringify()", true],
+    wrongAnswer1: ["B. parse()", false],
+    wrongAnswer2: ["C. convert()", false],
+    wrongAnswer3: ["D. None of the above", false]
+};
+var question3 = {
     question: "Which function is used to turn an object into a string?",
-    rightAnswer: "A. stringify()",
-    wrongAnswer1: "B. parse()",
-    wrongAnswer2: "C. convert()",
-    wrongAnswer3: "D. None of the above"
+    rightAnswer: ["A. stringify()", true],
+    wrongAnswer1: ["B. parse()", false],
+    wrongAnswer2: ["C. convert()", false],
+    wrongAnswer3: ["D. None of the above", true]
+};
+
+
+//hide/show divs 
+function startQuiz() {
+    hideTextAfterClick.setAttribute("style", "display: none"); //hides div that contains start button and description
+    questionDisplay.setAttribute("style", "display: block");
+    choiceA.setAttribute("style", "display: block");
+    choiceB.setAttribute("style", "display: block");
+    choiceC.setAttribute("style", "display: block");
+    choiceD.setAttribute("style", "display: block");
+
+
 }
-
-
-
-
 
 
 //eventlistener on click button
-startButton.addEventListener("click", function(){
+startButton.addEventListener("click", function () {
     countdown();
-    hideText.style.display = "none"; //hides div that contains start button and description
-    questionDisplay.setAttribute("style", "display: block");
+    startQuiz();
 });
 //timer that counts down from 60 
-function countdown(){
+function countdown() {
     var timeLeft = 60;
-    var timeInterval = setInterval(function(){
-        if(timeLeft >1 ){
+    var timeInterval = setInterval(function () {
+        if (timeLeft > 1) {
             timerDisplay.textContent = "Time: " + timeLeft;
-            timeLeft --;
-        } 
-        else{
+            timeLeft--;
+        }
+        else {
             timerDisplay.textContent = "Time is up";
             clearInterval(timeInterval);
         }
     }, 1000);
 }
 
+
+
+function displayQuestion() {
+    quizQuestion.textContent = "hello";
+}
+displayQuestion(1);
