@@ -48,7 +48,19 @@ var questionList = [
         answers: ['stringify()', 'parse()', 'convert()', 'None of the above'],
         correct: 'stringify()'
     },
+    {
+        question: "When an interpreter encounters an empty statements, what will it do?",
+        answers: ['Shows a warning', 'Prompts to complete the statement', 'Throws an Error', 'Ignores the statements'],
+        correct: 'Ignores the statements'
 
+
+    },
+    {
+        question: 'The function and var are known as:',
+        answers:['Keywords', 'Data types', 'Declaration statements', 'Prototypes'],
+        correct: 'Declaration statements'
+
+    }
 
 ]
 //selectAnswerWorks
@@ -141,8 +153,9 @@ function countdown() {
 
         else {
             timerDisplay.textContent = "Time is up";
-            clearInterval(timeInterval);
+            
             endQuiz();
+            clearInterval(timeInterval);
         }
     }, 1000);
 }
@@ -153,6 +166,8 @@ function endQuiz() {
     submitScore.setAttribute("style", "display: block");
     showAnswer.setAttribute('style', 'display: none');
     questionDisplay.setAttribute("style", "display: none");
+    clearInterval(timeInterval);
+    localStorage.setItem('latest Score', timeLeft);
 
 }
 
