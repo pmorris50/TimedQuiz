@@ -15,6 +15,8 @@ var choiceA = document.querySelector("#choiceA");
 var choiceB = document.querySelector("#choiceB");
 var choiceC = document.querySelector("#choiceC");
 var choiceD = document.querySelector("#choiceD");
+var initials = document.querySelector('.submit');
+
 //need to test 10-13
 //global var
 var timeInterval
@@ -169,5 +171,8 @@ function endQuiz() {
     clearInterval(timeInterval);
     localStorage.setItem('latest Score', timeLeft);
 
+    
+    localStorage.setItem('initials', initials.value);
+  
 }
 

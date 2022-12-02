@@ -10,8 +10,24 @@ header a{
 text-decoration: none;
 color: black;
 };
-
-
+.StartQuiz{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+#answer-display{
+    display:flex;
+    text-align: center;
+    justify-content: center;
+}
 li{
-    border: 2px solid black; 
+    border: 2px solid black;
+    list-style-type: none; 
+    text-align: center;
+    width: 50%
+}
+#question-display{
+    display:flex;
+    text-align: center;
+    justify-content: center;
 }
