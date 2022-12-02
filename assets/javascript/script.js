@@ -1,84 +1,127 @@
 //setting elements to variables so we can style
 var body = document.body;
+var question = document.querySelector('#question');
 var headerEL = document.querySelectorAll("header");
 var timerDisplay = document.querySelector(".timerdisplay")
 var startButton = document.querySelector("#startbutton");
-var quizQuestion = document.querySelector(".question");
+//var quizQuestion = document.querySelector("#question");
 var submitScore = document.querySelector(".form-container");
 var hideTextAfterClick = document.querySelector('.StartQuiz');
-var questionDisplay = document.querySelector("#question-container");
-var choiceA = document.querySelector(".choiceA");
-var choiceB = document.querySelector(".choiceB");
-var choiceC = document.querySelector(".choiceC");
-var choiceD = document.querySelector(".choiceD");
+var questionDisplay = document.querySelector("#question-display");
+var showQuestion = document.querySelector('#question');
+var showAnswer = document.querySelector('#answer-display');
+//use text.content to input answers
+var choiceA = document.querySelector("#choiceA");
+var choiceB = document.querySelector("#choiceB");
+var choiceC = document.querySelector("#choiceC");
+var choiceD = document.querySelector("#choiceD");
 //need to test 10-13
 //global var
+var timeInterval
 var timeLeft = 60;
 var currentQuestion = 0;
-//need to test 19-23
-body.appendChild(choiceA);
-body.appendChild(choiceB);
-body.appendChild(choiceC);
-body.appendChild(choiceD);
-body.appendChild(submitScore);
-questionDisplay.appendChild(quizQuestion);
+//appendchildforquestion
+//body.append(question);
 
 //initial styling to hide questions
+showAnswer.setAttribute('style', 'display: none');
 questionDisplay.setAttribute("style", "display: none");
 submitScore.setAttribute("style", "display: none");
-choiceA.setAttribute("style", "display: none")
-choiceB.setAttribute("style", "display: none")
-choiceC.setAttribute("style", "display: none")
-choiceD.setAttribute("style", "display: none")
-//question array idk if I need this but I might
-questionList = [question0, question1, question2, question3];
+
+
+var questionList = [
+    {
+
+        question: "JavaScript is an ______ language",
+        answers: ['Functional', 'Object-Oriented', 'Procedural', 'Scripted'],
+        correct: 'Object-Oriented'
+    },
+
+    {
+        question: "You can store data in JavaScript in?",
+        answers: ['Objects', 'Arrays', 'Variables', 'All of the above'],
+        correct: 'All of the above'
+    },
+
+    {
+        question: "Which function is used to turn an object into a string?",
+        answers: ['stringify()', 'parse()', 'convert()', 'None of the above'],
+        correct: 'stringify()'
+    },
+
+
+]
+//selectAnswerWorks
+function selectAnswer() {
+    showAnswer.addEventListener('click', function (event) {
+        if (event.target.matches('li')); {
+            if (event.target.textContent === questionList[currentQuestion].correct) {
+                console.log('please');
+
+
+            }
+            else {
+                timeLeft = timeLeft - 15;
+            };
+            currentQuestion++;
+            displayQuestion();
+
+        }
+    })
 
 
 
-//question objects
-var question0 = {
-    question: "JavaScript is an ______ language",
-    wrongAnswer1: ["A. Functional", false],
-    rightAnswer: ["B. Object-Oriented", true],
-    wrongAnswer2: ["C. Procedural", false],
-    wrongAnswer3: ["D. Scripted", false]
+
+
 };
 
-var question1 = {
-    question: "You can store data in JavaScript in?",
-    wrongAnswer1: ["A. Objects", false],
-    wrongAnswer2: ["B. Arrays", false],
-    wrongAnswer3: ["C. Variables", false],
-    rightAnswer: ["D. All of the above", true]
 
-};
-var question2 = {
-    question: "Which function is used to turn an object into a string?",
-    rightAnswer: ["A. stringify()", true],
-    wrongAnswer1: ["B. parse()", false],
-    wrongAnswer2: ["C. convert()", false],
-    wrongAnswer3: ["D. None of the above", false]
-};
-var question3 = {
-    question: "Which function is used to turn an object into a string?",
-    rightAnswer: ["A. stringify()", true],
-    wrongAnswer1: ["B. parse()", false],
-    wrongAnswer2: ["C. convert()", false],
-    wrongAnswer3: ["D. None of the above", true]
-};
+// function setNextQuestion(){
+//    userChoice = selectAnswer()
+//   console.log(userChoice);
 
 
-//hide/show divs 
-function startQuiz() {
-    hideTextAfterClick.setAttribute("style", "display: none"); //hides div that contains start button and description
-    questionDisplay.setAttribute("style", "display: block");
-    choiceA.setAttribute("style", "display: block");
-    choiceB.setAttribute("style", "display: block");
-    choiceC.setAttribute("style", "display: block");
-    choiceD.setAttribute("style", "display: block");
 
+// }
+
+
+
+function displayQuestion() {
+    if (currentQuestion < questionList.length) {
+        showQuestion.textContent = questionList[currentQuestion].question;
+        choiceA.textContent = questionList[currentQuestion].answers[0];
+        choiceB.textContent = questionList[currentQuestion].answers[1];
+        choiceC.textContent = questionList[currentQuestion].answers[2];
+        choiceD.textContent = questionList[currentQuestion].answers[3];
+
+
+    } else { endQuiz() };
+}
+function display() {
+    hideTextAfterClick.setAttribute("style", "display: none");
+    questionDisplay.setAttribute("style", "display: block", 'border: 2px solid black');
+    showAnswer.setAttribute('style', 'display: block');
+    //
 
 }
+//above is good
+
+
+
+
+function startQuiz() {
+
+
+    display();
+    displayQuestion();
+    selectAnswer();
+    // setNextQuestion();
+
+}
+
+
+
+
 
 
 //eventlistener on click button
@@ -88,22 +131,28 @@ startButton.addEventListener("click", function () {
 });
 //timer that counts down from 60 
 function countdown() {
-    var timeLeft = 60;
-    var timeInterval = setInterval(function () {
+
+    timeInterval = setInterval(function () {
+        timeLeft--;
         if (timeLeft > 1) {
             timerDisplay.textContent = "Time: " + timeLeft;
-            timeLeft--;
+
         }
+
         else {
             timerDisplay.textContent = "Time is up";
             clearInterval(timeInterval);
+            endQuiz();
         }
     }, 1000);
 }
 
 
 
-function displayQuestion() {
-    quizQuestion.textContent = "hello";
+function endQuiz() {
+    submitScore.setAttribute("style", "display: block");
+    showAnswer.setAttribute('style', 'display: none');
+    questionDisplay.setAttribute("style", "display: none");
+
 }
-displayQuestion(1);
+

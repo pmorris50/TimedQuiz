@@ -21,14 +21,19 @@
     <!-- div container for all content -->
     
         <!-- div container to hold question/answers hidden until start button clicked  -->
-        <div id="question-container">
-            <ul class = "question"></ul>
-                <ul> <button class= "choiceA"></button></ul>
-                <ul> <button class= "choiceB"></button></ul>
-                <ul> <button class= "choiceC"></button></ul>
-                <ul> <button class= "choiceD"></button></ul>
-            <!-- question and answer selection will go here  -->
+        <div id="question-display">
+            <h2 id = "question"></h2>
         </div>
+            <div id =answer-display>
+                <ul id = 'anwer-display'>
+                <li class="userchoice" id= "choiceA"></li>
+                <li class="userchoice" id= "choiceB"></li>
+                <li class="userchoice" id= "choiceC"></li>
+                <li class="userchoice" id= "choiceD"></li>
+                </ul>
+            </div>
+          
+       
         <!-- Center, enlarge and style. add event listener. -->
         <div class= "StartQuiz">
             <p>clicking on the "Start Quiz" button will start a timer and present you with quiz questions. 15 seconds will be subtracted from the timer for every wrong answer. Your score will be the remaining time.

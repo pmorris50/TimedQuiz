@@ -10,6 +10,8 @@ header a{
 text-decoration: none;
 color: black;
 };
-.beforeClick{
-    
+
+
+li{
+    border: 2px solid black; 
 }
